@@ -7,6 +7,7 @@
   const skip = 20;
 
   //VARIABLES REACTIVAS DE LA PÁGINA WEB
+  const endpoint = ref('')
   const correos = ref(new Map());
   const correo = ref({});
   const showCorreo = ref(false);
@@ -16,7 +17,8 @@
 
   //ON MOUNTED HOOK
   onMounted(() => {
-    errorMsg.value = 'Type your search!!!'
+    endpoint.value = window.location.protocol + '//' + window.location.host;
+    errorMsg.value = 'Type your search!!!';
   });
 
   //MÉTODOS COMPUTADOS
@@ -78,7 +80,7 @@
     correos.value.clear();
     showCorreo.value = false;
 
-    const url = "http://localhost:8080/api/busqueda"
+    const url = endpoint.value + "/api/busqueda"
 
     const headers = new Headers({
       "Content-Type": "application/json",
